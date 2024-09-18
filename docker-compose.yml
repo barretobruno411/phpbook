@@ -1,0 +1,28 @@
+#version: '3.8'
+
+services:
+  app:
+    image: php:8.2-apache  # Atualizado para PHP 8.2
+    container_name: php_app
+    volumes:
+      - ./src:/var/www/html
+    ports:
+      - "8000:80"
+    restart: always
+
+  db:
+    image: mysql:8.0
+    container_name: mysql_db
+    environment:
+      MYSQL_ROOT_PASSWORD: lerolero411
+      MYSQL_DATABASE: phpbook
+      MYSQL_USER: user
+      MYSQL_PASSWORD: senha_usuario
+    volumes:
+      - db_data:/var/lib/mysql
+    ports:
+      - "3306:3306"
+    restart: always
+
+volumes:
+  db_data:
